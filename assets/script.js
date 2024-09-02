@@ -1,4 +1,5 @@
 // Récupérer les données du back via l'API + appeler la fonction genererProjet
+let works;
 
 const fetchWorks = async () => {
   try {
@@ -32,7 +33,11 @@ const generateProjects = (works) => {
   }
 };
 
-fetchWorks().then((works) => generateProjects(works));
+fetchWorks().then(async (works) => {
+  const categories = await fetchCategories();
+  generateProjects(works);
+  generateCategories(categories, works);
+});
 
 // Fetch pour récupérer les catégories
 
@@ -48,31 +53,33 @@ const fetchCategories = async () => {
   }
 };
 
-// Générer les boutons dynamiquement
+// Générer les boutons Catégories
+const generateCategories = (categories, works) => {
+  const btnFilters = document.querySelector("#portfolio .filters");
 
-const generateCategories = (categories) => {
-  const filters = document.querySelector("#portfolio .filters");
-
-  for (i = 0; i < categories.length; i++) {
-    const filter = document.createElement("button");
-    filter.classList.add("filter");
-    filter.innerText = categories[i].name;
-    filter.setAttribute("id", categories[i].id);
-    filters.appendChild(filter);
-    console.log(categories);
-
-    filter.addEventListener("click", () => {
-      // Enlever la classe active de tous les boutons
-      const allFilters = document.querySelectorAll(".filter");
-      allFilters.forEach((btn) => {
-        btn.classList.remove("active");
-      });
-
-      // Ajouter la classe active sur le bouton cliqué
-      filter.classList.add("active");
-      console.log("Bouton cliqué : ", filter.innerText);
-    });
+  for (const category of categories) {
+    const btnFilter = document.createElement("button");
+    btnFilter.classList.add("filter");
+    btnFilter.innerText = category.name;
+    btnFilter.setAttribute("id", category.id);
+    btnFilters.appendChild(btnFilter);
+    filterWorks(btnFilter, works, category.id);
   }
 };
 
-fetchCategories().then((categories) => generateCategories(categories));
+// Trier les catégories avec les boutons
+const filterWorks = (btnFilter, works, categoryId) => {
+  btnFilter.addEventListener("click", () => {
+    // Enlever la classe active de tous les boutons
+    const allFilters = document.querySelectorAll(".filter");
+    allFilters.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    // Ajouter la classe active sur le bouton cliqué
+    btnFilter.classList.add("active");
+    const worksFiltered = works.filter((work) => {
+      return work.categoryId === categoryId;
+    });
+    generateProjects(worksFiltered);
+  });
+};
