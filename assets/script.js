@@ -65,6 +65,7 @@ const generateCategories = (categories, works) => {
     btnFilters.appendChild(btnFilter);
     filterWorks(btnFilter, works, category.id);
   }
+  console.log(btnFilter);
 };
 
 // Trier les catégories avec les boutons
@@ -72,6 +73,7 @@ const filterWorks = (btnFilter, works, categoryId) => {
   btnFilter.addEventListener("click", () => {
     // Enlever la classe active de tous les boutons
     const allFilters = document.querySelectorAll(".filter");
+
     allFilters.forEach((btn) => {
       btn.classList.remove("active");
     });
@@ -80,6 +82,7 @@ const filterWorks = (btnFilter, works, categoryId) => {
     const worksFiltered = works.filter((work) => {
       return work.categoryId === categoryId;
     });
+    console.log(btnFilter.id);
     generateProjects(worksFiltered);
   });
 };
