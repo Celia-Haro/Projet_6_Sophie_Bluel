@@ -65,7 +65,6 @@ const generateCategories = (categories, works) => {
     btnFilters.appendChild(btnFilter);
     filterWorks(btnFilter, works, category.id);
   }
-  console.log(btnFilter);
 };
 
 // Trier les catégories avec les boutons
