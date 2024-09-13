@@ -230,6 +230,8 @@ li a:hover {
 }
 
 .filter {
+  width: auto;
+  min-width: 100px;
   font-family: "syne";
   font-size: 16px;
   font-weight: 700;
