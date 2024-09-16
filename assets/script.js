@@ -87,7 +87,7 @@ const filterWorks = (btnFilter, works, categoryId) => {
   });
 };
 
-// Récupération des informations d'authentification et gestion de le connexion
+// Gestion de le connexion
 const userConnected = localStorage.getItem("token");
 
 const toggleLoginOut = () => {
@@ -100,6 +100,7 @@ const toggleLoginOut = () => {
   log.addEventListener("click", () => {
     if (userConnected) {
       localStorage.removeItem("token");
+      window.location.reload();
     } else {
       log.setAttribute("href", "./assets/login.html");
     }
@@ -108,7 +109,7 @@ const toggleLoginOut = () => {
 
 toggleLoginOut();
 
-// Activation du mode édition
+// Gestion du mode édition
 const toggleEditionMode = () => {
   const editionBanner = document.getElementById("edition-banner");
   const modalBtn = document.getElementById("btn-modal");
@@ -123,4 +124,4 @@ const toggleEditionMode = () => {
   }
 };
 
-toggleEditionMode();
+toggleEditionMode(userConnected);
