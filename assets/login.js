@@ -19,7 +19,12 @@ form.addEventListener("submit", function (event) {
     try {
       const body = await response.json();
       console.log(body);
-      // window.location.href = "../index.html";
+      if (response.ok) {
+        localStorage.setItem("token", body.token);
+        window.location.href = "../index.html";
+      } else {
+        alert("Identifiant ou mot de passe incorrect");
+      }
     } catch (error) {
       console.log("Une erreur s'est produite lors de la connexion");
     }

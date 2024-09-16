@@ -129,16 +129,41 @@ table {
 }
 /** end reset css**/
 body {
-  max-width: 1140px;
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
 }
+
+.edition-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 59px;
+  background: black;
+}
+
+.edition-banner p {
+  color: white;
+  font-size: 16px;
+}
+
+.edition-banner p i {
+  margin-right: 10px;
+}
+
+header,
+main,
+footer {
+  max-width: 1140px;
+  margin: auto;
+}
+
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
+  margin: 38px auto 50px;
 }
+
 section {
   margin: 50px 0;
 }
@@ -215,9 +240,29 @@ li a:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
+
 #portfolio h2 {
+  display: flex;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1em;
+}
+
+#btn-modal {
+  border: none;
+  background: none;
+  padding: 0;
+  width: auto;
+  margin-left: 25px;
+  font-size: 14px;
+  font-family: "work sans";
+  cursor: pointer;
+}
+
+#btn-modal i {
+  margin-right: 5px;
+  font-size: 16px;
 }
 
 .filters {
@@ -297,6 +342,10 @@ input[type="submit"] {
   width: 180px;
   text-align: center;
   border-radius: 60px;
+}
+
+.disabled {
+  display: none;
 }
 
 /* Page Login */

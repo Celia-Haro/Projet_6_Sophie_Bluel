@@ -53,9 +53,10 @@ const fetchCategories = async () => {
   }
 };
 
+const btnFilters = document.querySelector("#portfolio .filters");
 // Générer les boutons Catégories
 const generateCategories = (categories, works) => {
-  const btnFilters = document.querySelector("#portfolio .filters");
+  // const btnFilters = document.querySelector("#portfolio .filters");
 
   for (const category of categories) {
     const btnFilter = document.createElement("button");
@@ -85,3 +86,41 @@ const filterWorks = (btnFilter, works, categoryId) => {
     generateProjects(worksFiltered);
   });
 };
+
+// Récupération des informations d'authentification et gestion de le connexion
+const userConnected = localStorage.getItem("token");
+
+const toggleLoginOut = () => {
+  const log = document.getElementById("logInOut");
+  if (userConnected) {
+    log.innerText = "logout";
+  } else {
+    log.innerText = "login";
+  }
+  log.addEventListener("click", () => {
+    if (userConnected) {
+      localStorage.removeItem("token");
+    } else {
+      log.setAttribute("href", "./assets/login.html");
+    }
+  });
+};
+
+toggleLoginOut();
+
+// Activation du mode édition
+const toggleEditionMode = () => {
+  const editionBanner = document.getElementById("edition-banner");
+  const modalBtn = document.getElementById("btn-modal");
+  if (userConnected) {
+    editionBanner.classList.remove("disabled");
+    modalBtn.classList.remove("disabled");
+    btnFilters.classList.add("disabled");
+  } else {
+    editionBanner.classList.add("disabled");
+    modalBtn.classList.add("disabled");
+    btnFilters.classList.remove("disabled");
+  }
+};
+
+toggleEditionMode();
