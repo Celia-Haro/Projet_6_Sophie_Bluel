@@ -16,12 +16,53 @@
     ></script>
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/modal.js" defer></script>
     <script src="./assets/script.js" defer></script>
   </head>
   <body>
+    <aside id="modal" class="disabled">
+      <div id="modal1">
+        <div class="modal-nav">
+          <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <h2>Galerie photo</h2>
+        <div class="modal-gallery">
+          <!-- Images des projets à ajouter dynamiquement -->
+        </div>
+        <button id="btn-modal2">Ajouter une photo</button>
+      </div>
+      <div id="modal2" class="disabled">
+        <div class="modal-nav">
+          <button class="previous-modal">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <h2>Ajout photo</h2>
+        <form>
+          <label for="picture">
+            <i></i>
+            <button>+ Ajouter photo</button>
+            <p>jpg, png : 4mo max</p>
+          </label>
+          <input type="file" name="picture" />
+          <label for="title"></label>
+          <input type="text" name="title" />
+          <label for="categories"></label>
+          <select name="categories" id="">
+            <!-- Catégories à récupérer dynamiquement -->
+            <option value="">Objets</option>
+            <option value="">etc</option>
+            <option value="">etc</option>
+          </select>
+        </form>
+      </div>
+    </aside>
+
     <div id="edition-banner" class="edition-banner disabled">
       <p><i class="fa-regular fa-pen-to-square"></i>Mode édition</p>
     </div>
+
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
