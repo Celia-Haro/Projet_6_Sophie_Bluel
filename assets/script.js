@@ -1,6 +1,6 @@
 // Récupérer les données du back via l'API + appeler la fonction genererProjet
 export let works;
-import { generateModalGallery } from "./modal.js";
+import { generateModalGallery } from "./scripts/modal.js";
 
 export const fetchWorks = async () => {
   try {
@@ -107,7 +107,7 @@ const toggleLoginOut = () => {
       localStorage.removeItem("token");
       window.location.reload();
     } else {
-      log.setAttribute("href", "./assets/login.html");
+      log.setAttribute("href", "./assets/pages/login.html");
     }
   });
 };

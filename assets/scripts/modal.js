@@ -1,6 +1,6 @@
-import { fetchWorks } from "./script.js";
-import { generateProjects } from "./script.js";
-import { works } from "./script.js";
+import { fetchWorks } from "../script.js";
+import { generateProjects } from "../script.js";
+import { works } from "../script.js";
 
 // Open / close / switch modal
 const modalLayout = document.getElementById("modal");
