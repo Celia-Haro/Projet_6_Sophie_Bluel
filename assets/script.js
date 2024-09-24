@@ -55,37 +55,40 @@ const fetchCategories = async () => {
   }
 };
 
-const btnFilters = document.querySelector("#portfolio .filters");
-// Générer les boutons Catégories
-const generateCategories = (categories, works) => {
-  // const btnFilters = document.querySelector("#portfolio .filters");
+const filtersContainer = document.querySelector("#portfolio .filters");
 
+const generateCategories = (categories, works) => {
   for (const category of categories) {
-    const btnFilter = document.createElement("button");
-    btnFilter.classList.add("filter");
-    btnFilter.innerText = category.name;
-    btnFilter.setAttribute("id", category.id);
-    btnFilters.appendChild(btnFilter);
-    filterWorks(btnFilter, works, category.id);
+    const addFilterBtn = document.createElement("button");
+    addFilterBtn.classList.add("filter");
+    addFilterBtn.innerText = category.name;
+    addFilterBtn.setAttribute("id", category.id);
+    filtersContainer.appendChild(addFilterBtn);
   }
+  const allFilters = document.querySelectorAll(".filters .filter");
+  filterWorks(allFilters, works);
 };
 
 // Trier les catégories avec les boutons
-const filterWorks = (btnFilter, works, categoryId) => {
-  btnFilter.addEventListener("click", () => {
-    // Enlever la classe active de tous les boutons
-    const allFilters = document.querySelectorAll(".filter");
+const filterWorks = (allFilters, works) => {
+  allFilters.forEach((filterBtn) => {
+    filterBtn.addEventListener("click", (e) => {
+      allFilters.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      e.currentTarget.classList.add("active");
 
-    allFilters.forEach((btn) => {
-      btn.classList.remove("active");
+      const categoryId = e.currentTarget.id;
+
+      if (categoryId === "0") {
+        generateProjects(works);
+      } else {
+        const worksFiltered = works.filter((work) => {
+          return work.categoryId.toString() === categoryId;
+        });
+        generateProjects(worksFiltered);
+      }
     });
-    // Ajouter la classe active sur le bouton cliqué
-    btnFilter.classList.add("active");
-    const worksFiltered = works.filter((work) => {
-      return work.categoryId === categoryId;
-    });
-    console.log(btnFilter.id);
-    generateProjects(worksFiltered);
   });
 };
 
@@ -118,11 +121,11 @@ const toggleEditionMode = () => {
   if (userConnected) {
     editionBanner.classList.remove("disabled");
     modalBtn.classList.remove("disabled");
-    btnFilters.classList.add("disabled");
+    filtersContainer.classList.add("disabled");
   } else {
     editionBanner.classList.add("disabled");
     modalBtn.classList.add("disabled");
-    btnFilters.classList.remove("disabled");
+    filtersContainer.classList.remove("disabled");
   }
 };
 

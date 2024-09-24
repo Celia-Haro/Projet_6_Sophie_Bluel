@@ -89,6 +89,13 @@ const deleteProjects = () => {
   allDeleteIcons.forEach((icon) => {
     icon.addEventListener("click", async (e) => {
       e.stopPropagation();
+
+      const confirmation = confirm(
+        "Êtes-vous sûr de vouloir supprimer ce projet ?"
+      );
+      if (!confirmation) {
+        return;
+      }
       const projectId = e.currentTarget.id;
       const userToken = localStorage.getItem("token");
 
