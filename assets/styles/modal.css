@@ -43,6 +43,17 @@
   cursor: pointer;
 }
 
+.modal-nav .previous-modal {
+  border: none;
+  background-color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 24px;
+  cursor: pointer;
+}
+
 #modal1 h2,
 #modal2 h2 {
   font-size: 26px;
@@ -100,6 +111,93 @@
   height: 36px;
   font-size: 14px;
   cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 20px; */
+}
+
+.picture-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  width: 420px;
+  height: 169px;
+  background: #e8f1f6;
+  border-radius: 3px;
+}
+
+.picture-input i {
+  color: #b9c5cc;
+}
+
+.picture-input button {
+  border-radius: 50px;
+  border: 1px solid #e8f1f6;
+  background: #cbd6dc;
+  color: #306685;
+  font-family: "work sans";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 173px;
+  height: 36px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.picture-input label {
+  cursor: pointer;
+}
+
+.picture-input p {
+  font-size: 10px;
+  color: #444444;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.form-bloc {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.form-bloc input,
+.form-bloc select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 51px;
+  border: none;
+  box-shadow: 0px 4px 14px 0px #00000017;
+  padding: 0 15px;
+}
+
+.form-bloc select {
+  color: #6c6c6c;
+}
+
+.unactive {
+  width: 237px;
+  height: 36px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 60px;
+  background: #a7a7a7;
+  color: white;
+  font-family: "syne";
+  font-weight: 700;
 }
 
 .disabled {

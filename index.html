@@ -43,21 +43,30 @@
         </div>
         <h2>Ajout photo</h2>
         <form>
-          <label for="picture">
-            <i></i>
-            <button>+ Ajouter photo</button>
+          <div class="picture-input">
+            <i class="fa-regular fa-image fa-5x"></i>
+            <button><label for="picture"> + Ajouter photo </label></button>
+
             <p>jpg, png : 4mo max</p>
-          </label>
+          </div>
+
           <input type="file" name="picture" />
-          <label for="title"></label>
-          <input type="text" name="title" />
-          <label for="categories"></label>
-          <select name="categories" id="">
-            <!-- Catégories à récupérer dynamiquement -->
-            <option value="">Objets</option>
-            <option value="">etc</option>
-            <option value="">etc</option>
-          </select>
+          <div class="form-bloc">
+            <label for="title">Titre</label>
+            <input type="text" name="title" />
+          </div>
+          <div class="form-bloc">
+            <label for="categories">Catégorie</label>
+            <select name="categories" id="">
+              <!-- Catégories à récupérer dynamiquement -->
+              <option value=""></option>
+              <option value=""></option>
+              <option value=""></option>
+            </select>
+          </div>
+
+          <div class="modal-separator"></div>
+          <button class="unactive" type="submit">Valider</button>
         </form>
       </div>
     </aside>
