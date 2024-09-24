@@ -364,17 +364,28 @@ input[type="submit"] {
   position: absolute;
   width: 630px;
   height: 688px;
-  padding: 20px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   background: white;
+  align-items: center;
   border-radius: 10px;
 }
 
 .modal-nav {
   display: flex;
-  justify-content: space-between;
   font-size: 16px;
+}
+
+.modal-nav .close-modal {
+  border: none;
+  background-color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 24px;
+  cursor: pointer;
 }
 
 #modal1 h2,
@@ -384,7 +395,56 @@ input[type="submit"] {
   font-family: "work sans";
   color: black;
   text-align: center;
-  margin-top: 15px;
+  margin: 45px auto 35px;
+}
+
+.modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 30px;
+  column-gap: 10px;
+  margin: 30px auto;
+}
+
+.modal-gallery figure {
+  position: relative;
+}
+
+.modal-image {
+  object-fit: cover;
+  height: 102px;
+}
+
+.delete-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: black;
+  border-radius: 2px;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.delete-icon {
+  color: white;
+  font-size: 10px;
+}
+
+.modal-separator {
+  margin: 35px auto 40px;
+  border-bottom: 1px solid #b3b3b3;
+  width: 420px;
+}
+
+#btn-modal2 {
+  width: 237px;
+  height: 36px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .disabled {

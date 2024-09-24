@@ -1,7 +1,8 @@
 // Récupérer les données du back via l'API + appeler la fonction genererProjet
-let works;
+export let works;
+import { generateModalGallery } from "./modal.js";
 
-const fetchWorks = async () => {
+export const fetchWorks = async () => {
   try {
     const response = await fetch("http://localhost:5678/api/works");
     return await response.json();
@@ -15,10 +16,10 @@ const fetchWorks = async () => {
 
 // Création de la fonction pour générer les projets dynamiquement
 
-const generateProjects = (works) => {
+export const generateProjects = (works) => {
   const gallery = document.querySelector("#portfolio .gallery");
   gallery.innerHTML = "";
-  for (i = 0; i < works.length; i++) {
+  for (let i = 0; i < works.length; i++) {
     const figure = document.createElement("figure");
     const image = document.createElement("img");
 
@@ -37,6 +38,7 @@ fetchWorks().then(async (works) => {
   const categories = await fetchCategories();
   generateProjects(works);
   generateCategories(categories, works);
+  generateModalGallery(works);
 });
 
 // Fetch pour récupérer les catégories
