@@ -21,7 +21,7 @@ form.addEventListener("submit", function (event) {
       console.log(body);
       if (response.ok) {
         localStorage.setItem("token", body.token);
-        window.location.href = "../index.html";
+        window.location.href = "../../index.html";
       } else {
         alert("Identifiant ou mot de passe incorrect");
       }

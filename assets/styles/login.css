@@ -1,0 +1,58 @@
+/* Page Login */
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  gap: 40px;
+  min-height: 75vh;
+  color: #3d3d3d;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+.form-block,
+.form-submit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-submit {
+  gap: 20px;
+  align-items: center;
+}
+
+.form-submit input {
+  height: 50px;
+  border: none;
+  margin: 0;
+}
+.form-submit a {
+  text-decoration: underline;
+  color: #3d3d3d;
+}
+
+.form-block input {
+  width: 379px;
+  height: 51px;
+  border: none;
+  box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+button {
+  width: 179px;
+}
+
+footer nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
+}
