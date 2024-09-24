@@ -16,8 +16,8 @@
     ></script>
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <script src="./assets/modal.js" defer></script>
-    <script src="./assets/script.js" defer></script>
+    <script type="module" src="./assets/modal.js"></script>
+    <script type="module" src="./assets/script.js"></script>
   </head>
   <body>
     <aside id="modal" class="disabled">
@@ -29,7 +29,8 @@
         <div class="modal-gallery">
           <!-- Images des projets à ajouter dynamiquement -->
         </div>
-        <button id="btn-modal2">Ajouter une photo</button>
+        <div class="modal-separator"></div>
+        <button id="btn-modal2" class="filter active">Ajouter une photo</button>
       </div>
       <div id="modal2" class="disabled">
         <div class="modal-nav">
