@@ -199,6 +199,7 @@ input[type="file"] {
   font-weight: 700;
   color: white;
   background: #1d6154;
+  cursor: pointer;
 }
 
 .unactive {
