@@ -18,7 +18,7 @@
   position: absolute;
   width: 630px;
   height: 688px;
-  padding: 25px;
+  /* padding: 25px; */
   display: flex;
   flex-direction: column;
   background: white;
@@ -61,7 +61,7 @@
   font-family: "work sans";
   color: black;
   text-align: center;
-  margin: 40px auto 35px;
+  margin: 50px auto 20px;
 }
 
 .modal-gallery {
@@ -101,7 +101,7 @@
 }
 
 .modal-separator {
-  margin: 30px auto 25px;
+  margin: 35px auto 40px;
   border-bottom: 1px solid #b3b3b3;
   width: 420px;
 }
@@ -118,7 +118,6 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* gap: 20px; */
 }
 
 .picture-input {
@@ -131,13 +130,19 @@ form {
   height: 169px;
   background: #e8f1f6;
   border-radius: 3px;
+  margin: 25px auto 20px;
+}
+
+.picture-input img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .picture-input i {
   color: #b9c5cc;
 }
 
-.picture-input button {
+.picture-input label {
   border-radius: 50px;
   border: 1px solid #e8f1f6;
   background: #cbd6dc;
@@ -149,10 +154,6 @@ form {
   width: 173px;
   height: 36px;
   box-sizing: border-box;
-  cursor: pointer;
-}
-
-.picture-input label {
   cursor: pointer;
 }
 
@@ -188,16 +189,20 @@ input[type="file"] {
   color: #6c6c6c;
 }
 
-.unactive {
+.modal-form-submit {
   width: 237px;
   height: 36px;
   box-sizing: border-box;
   border: none;
   border-radius: 60px;
-  background: #a7a7a7;
-  color: white;
   font-family: "syne";
   font-weight: 700;
+  color: white;
+  background: #1d6154;
+}
+
+.unactive {
+  background: #a7a7a7;
 }
 
 .disabled {

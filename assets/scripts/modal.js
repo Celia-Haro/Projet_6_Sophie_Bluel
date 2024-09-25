@@ -124,3 +124,49 @@ const deleteProjects = () => {
     });
   });
 };
+
+// Gestion de modal2: récupérer les catégories
+
+// Cette fonction est appelée dans script.js, à la suite de fetchCategories l.37
+
+export const generateModalCat = (categories, works) => {
+  for (const category of categories) {
+    const selectCat = document.querySelector(".form-bloc select");
+    const optionCat = document.createElement("option");
+    optionCat.value = category.name;
+    optionCat.innerText = category.name;
+    selectCat.appendChild(optionCat);
+  }
+};
+
+// Gestion de modal2: vérifier les données du formulaire
+
+// Gestion de picture-input
+
+const pictureInput = document.getElementById("picture");
+const pictureContainer = document.querySelector(".picture-input");
+const pictureContentInfo = pictureContainer.innerHTML;
+
+pictureInput.addEventListener("change", () => {
+  const file = pictureInput.files[0];
+  const maxSize = 4 * 1024 * 1024; // 4 Mo en octets
+
+  if (
+    file &&
+    (file.type === "image/jpeg" || file.type === "image/png") &&
+    file.size < maxSize
+  ) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      pictureContainer.innerHTML = `<img src=" ${e.target.result}" alt ="${e.target.name}" ></img>`;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    alert(
+      "L'image doit être au format  JPEG ou PNG et ne doit pas dépasser 4 Mo"
+    );
+    pictureContainer.innerHTML = pictureContentInfo;
+    pictureInput.value = "";
+    return;
+  }
+});
