@@ -1,6 +1,7 @@
 // Récupérer les données du back via l'API + appeler la fonction genererProjet
 export let works;
 import { generateModalGallery } from "./scripts/modal.js";
+import { generateModalCat } from "./scripts/modal.js";
 
 export const fetchWorks = async () => {
   try {
@@ -39,6 +40,7 @@ fetchWorks().then(async (works) => {
   generateProjects(works);
   generateCategories(categories, works);
   generateModalGallery(works);
+  generateModalCat(categories);
 });
 
 // Fetch pour récupérer les catégories
