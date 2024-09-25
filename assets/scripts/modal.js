@@ -127,7 +127,7 @@ const deleteProjects = () => {
 
 // Gestion de modal2: récupérer les catégories
 
-// Cette fonction est appelée dans script.js, à la suite de fetchCategories l.37
+// Cette fonction est appelée dans script.js, à la suite de fetchWorks l.37
 
 export const generateModalCat = (categories, works) => {
   for (const category of categories) {
@@ -139,9 +139,7 @@ export const generateModalCat = (categories, works) => {
   }
 };
 
-// Gestion de modal2: vérifier les données du formulaire
-
-// Gestion de picture-input
+// Gestion de modal2: picture-input
 
 const pictureInput = document.getElementById("picture");
 const pictureContainer = document.querySelector(".picture-input");
@@ -168,5 +166,52 @@ pictureInput.addEventListener("change", () => {
     pictureContainer.innerHTML = pictureContentInfo;
     pictureInput.value = "";
     return;
+  }
+});
+
+// Gestion modal2: Vérification des champs du formulaire, activation de submit
+
+const form = document.querySelector("form");
+const submitButton = document.querySelector(".modal-form-submit");
+
+form.addEventListener("input", () => {
+  const file = pictureInput.files[0];
+  const title = document.querySelector('input[name="title"]').value;
+  const category = document.querySelector('select[name="categories"]').value;
+
+  if (file && title.trim() !== "" && category.trim() !== "") {
+    submitButton.classList.remove("unactive");
+  } else {
+    submitButton.classList.add("unactive");
+  }
+});
+
+// Gestion du submit !!!
+
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (submitButton.classList.contains("unactive")) {
+    alert(
+      "Vous devez remplir tous les champs du formulaire pour pouvoir envoyer un projet"
+    );
+  } else {
+    console.log("ok pour l'envoi de données");
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]); // Le fichier image sélectionné
+    formData.append("title", textInput.value); // Le texte du champ titre
+
+    //A ré écrire en mode async await + try catch
+
+    //   fetch("https://exemple.com/upload", {
+    //     method: "POST",
+    //     body: formData, // Envoyer l'objet FormData directement
+    //   })
+    //     .then((response) => response.json()) // Récupérer la réponse en JSON
+    //     .then((data) => {
+    //       console.log("Réponse du serveur:", data);
+    //     })
+    //     .catch((error) => {
+    //       console.error("Erreur lors de l'envoi:", error);
+    //     });
   }
 });
