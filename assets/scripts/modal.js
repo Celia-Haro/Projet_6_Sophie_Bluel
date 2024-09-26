@@ -135,6 +135,7 @@ export const generateModalCat = (categories, works) => {
     const optionCat = document.createElement("option");
     optionCat.value = category.name;
     optionCat.innerText = category.name;
+    optionCat.id = category.id;
     selectCat.appendChild(optionCat);
   }
 };
@@ -171,7 +172,7 @@ pictureInput.addEventListener("change", () => {
 
 // Gestion modal2: Vérification des champs du formulaire, activation de submit
 
-const form = document.querySelector("form");
+const form = document.querySelector(".modal-form");
 const submitButton = document.querySelector(".modal-form-submit");
 
 form.addEventListener("input", () => {
@@ -188,30 +189,70 @@ form.addEventListener("input", () => {
 
 // Gestion du submit !!!
 
-submitButton.addEventListener("click", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (submitButton.classList.contains("unactive")) {
     alert(
       "Vous devez remplir tous les champs du formulaire pour pouvoir envoyer un projet"
     );
   } else {
-    console.log("ok pour l'envoi de données");
+    const userToken = localStorage.getItem("token");
+
     const formData = new FormData();
-    formData.append("image", fileInput.files[0]); // Le fichier image sélectionné
-    formData.append("title", textInput.value); // Le texte du champ titre
+    const image = pictureInput.files[0];
+    const title = document.getElementById("form-title").value;
 
-    //A ré écrire en mode async await + try catch
+    const categorySelect = document.querySelector(".form-bloc select");
+    const selectedOption = categorySelect.selectedOptions[0];
+    const categoryId = parseInt(selectedOption.getAttribute("id"), 10);
 
-    //   fetch("https://exemple.com/upload", {
-    //     method: "POST",
-    //     body: formData, // Envoyer l'objet FormData directement
-    //   })
-    //     .then((response) => response.json()) // Récupérer la réponse en JSON
-    //     .then((data) => {
-    //       console.log("Réponse du serveur:", data);
-    //     })
-    //     .catch((error) => {
-    //       console.error("Erreur lors de l'envoi:", error);
-    //     });
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("category", categoryId);
+
+    formData.forEach((value, key) => {
+      console.log(key, value);
+    });
+
+    console.log(userToken);
+    try {
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        function clearFormFields() {
+          pictureContainer.innerHTML = pictureContentInfo;
+          form.reset();
+        }
+
+        alert("Le projet a été ajouté avec succès");
+        fetchWorks().then(async (works) => {
+          generateModalGallery(works);
+          generateProjects(works);
+          clearFormFields();
+          switchModal(modals[1], modals[0]);
+          closeModal(modal);
+        });
+      }
+    } catch (error) {
+      if (error.status === 400) {
+        alert("Une erreur s'est produite. Veuillez vérifier vos données.");
+      } else if (error.status === 401) {
+        alert(
+          "Vous n'êtes pas autorisé à effectuer cette action. Votre session a expiré, veuillez vous reconnecter."
+        );
+      } else if (error.status === 500) {
+        alert(
+          "Une erreur interne du serveur s'est produite. Veuillez réessayer plus tard."
+        );
+      } else {
+        alert("Une erreur s'est produite. Veuillez réessayer plus tard.");
+      }
+    }
   }
 });
