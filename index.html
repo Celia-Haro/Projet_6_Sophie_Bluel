@@ -43,7 +43,7 @@
           <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <h2>Ajout photo</h2>
-        <form>
+        <form class="modal-form">
           <div class="picture-input">
             <i class="fa-regular fa-image fa-5x"></i>
             <label for="picture"> + Ajouter photo </label>
@@ -53,11 +53,11 @@
 
           <div class="form-bloc">
             <label for="title">Titre</label>
-            <input type="text" name="title" />
+            <input type="text" name="title" id="form-title" />
           </div>
           <div class="form-bloc">
             <label for="categories">Catégorie</label>
-            <select name="categories" id="">
+            <select name="categories">
               <option value=""></option>
               <!-- Catégories récupérées dynamiquement -->
             </select>
