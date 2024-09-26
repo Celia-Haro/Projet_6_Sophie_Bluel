@@ -1,7 +1,7 @@
-// Récupérer les données du back via l'API + appeler la fonction genererProjet
-export let works;
 import { generateModalGallery } from "./scripts/modal.js";
 import { generateModalCat } from "./scripts/modal.js";
+
+// Récupérer les données du back via l'API + générer les projets  et les catégories dans la galerie
 
 export const fetchWorks = async () => {
   try {
@@ -14,8 +14,6 @@ export const fetchWorks = async () => {
     alert("Un problème de serveur est survenu");
   }
 };
-
-// Création de la fonction pour générer les projets dynamiquement
 
 export const generateProjects = (works) => {
   const gallery = document.querySelector("#portfolio .gallery");
@@ -42,8 +40,6 @@ fetchWorks().then(async (works) => {
   generateModalGallery(works);
   generateModalCat(categories);
 });
-
-// Fetch pour récupérer les catégories
 
 const fetchCategories = async () => {
   try {
@@ -72,6 +68,7 @@ const generateCategories = (categories, works) => {
 };
 
 // Trier les catégories avec les boutons
+
 const filterWorks = (allFilters, works) => {
   allFilters.forEach((filterBtn) => {
     filterBtn.addEventListener("click", (e) => {
@@ -94,7 +91,8 @@ const filterWorks = (allFilters, works) => {
   });
 };
 
-// Gestion de le connexion
+// Gestion de la connexion et du mode édition
+
 const userConnected = localStorage.getItem("token");
 
 const toggleLoginOut = () => {
@@ -116,7 +114,6 @@ const toggleLoginOut = () => {
 
 toggleLoginOut();
 
-// Gestion du mode édition
 const toggleEditionMode = () => {
   const editionBanner = document.getElementById("edition-banner");
   const modalBtn = document.getElementById("btn-modal");
