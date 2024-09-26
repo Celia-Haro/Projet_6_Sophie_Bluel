@@ -1,5 +1,5 @@
-import { generateModalGallery } from "./scripts/modal.js";
-import { generateModalCat } from "./scripts/modal.js";
+import { generateModalGallery } from "./modal.js";
+import { generateModalCat } from "./modal.js";
 
 // Récupérer les données du back via l'API + générer les projets  et les catégories dans la galerie
 
