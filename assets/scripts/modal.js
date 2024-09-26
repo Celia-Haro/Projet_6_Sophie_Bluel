@@ -1,8 +1,7 @@
 import { fetchWorks } from "../script.js";
 import { generateProjects } from "../script.js";
-import { works } from "../script.js";
 
-// Open / close / switch modal
+// Open | close | switch  modal
 const modalLayout = document.getElementById("modal");
 const modals = [
   document.getElementById("modal1"),
@@ -53,7 +52,7 @@ document.querySelector(".previous-modal")?.addEventListener("click", (e) => {
 
 // Gestion  de modal1 : générer modalGallery
 
-// Cette fonction est appelée dans script.js, à la suite de fetchWorks l.37
+// Cette fonction est appelée dans script.js, à la suite de fetchWorks l.36
 
 export const generateModalGallery = (works) => {
   const modalGallery = document.querySelector(".modal-gallery");
@@ -127,9 +126,9 @@ const deleteProjects = () => {
 
 // Gestion de modal2: récupérer les catégories
 
-// Cette fonction est appelée dans script.js, à la suite de fetchWorks l.37
+// Cette fonction est appelée dans script.js, à la suite de fetchWorks l.36
 
-export const generateModalCat = (categories, works) => {
+export const generateModalCat = (categories) => {
   for (const category of categories) {
     const selectCat = document.querySelector(".form-bloc select");
     const optionCat = document.createElement("option");
@@ -193,7 +192,7 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (submitButton.classList.contains("unactive")) {
     alert(
-      "Vous devez remplir tous les champs du formulaire pour pouvoir envoyer un projet"
+      "Vous devez remplir tous les champs du formulaire pour pouvoir ajouter un projet"
     );
   } else {
     const userToken = localStorage.getItem("token");
