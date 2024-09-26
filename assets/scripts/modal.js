@@ -1,5 +1,5 @@
-import { fetchWorks } from "../script.js";
-import { generateProjects } from "../script.js";
+import { fetchWorks } from "./script.js";
+import { generateProjects } from "./script.js";
 
 // Open | close | switch  modal
 const modalLayout = document.getElementById("modal");
@@ -235,7 +235,6 @@ form.addEventListener("submit", async (e) => {
           generateProjects(works);
           clearFormFields();
           switchModal(modals[1], modals[0]);
-          closeModal(modal);
         });
       }
     } catch (error) {
