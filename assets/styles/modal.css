@@ -79,6 +79,7 @@
 .modal-image {
   object-fit: cover;
   height: 102px;
+  width: 76px;
 }
 
 .delete-container {
