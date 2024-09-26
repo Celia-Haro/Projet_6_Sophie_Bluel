@@ -23,7 +23,7 @@ form.addEventListener("submit", function (event) {
         localStorage.setItem("token", body.token);
         window.location.href = "../../index.html";
       } else {
-        alert("Identifiant ou mot de passe incorrect");
+        alert("Erreur dans l’identifiant ou le mot de passe");
       }
     } catch (error) {
       console.log("Une erreur s'est produite lors de la connexion");
