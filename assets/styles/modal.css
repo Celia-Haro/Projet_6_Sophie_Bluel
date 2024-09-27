@@ -167,7 +167,7 @@ input[type="file"] {
   display: none;
 }
 
-.form-bloc {
+.modal-form-bloc {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -176,8 +176,8 @@ input[type="file"] {
   gap: 10px;
 }
 
-.form-bloc input,
-.form-bloc select {
+.modal-form-bloc input,
+.modal-form-bloc select {
   width: 100%;
   box-sizing: border-box;
   height: 51px;
@@ -186,7 +186,7 @@ input[type="file"] {
   padding: 0 15px;
 }
 
-.form-bloc select {
+.modal-form-bloc select {
   color: #6c6c6c;
 }
 

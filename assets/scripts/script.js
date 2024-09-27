@@ -1,5 +1,6 @@
 import { generateModalGallery } from "./modal.js";
 import { generateModalCat } from "./modal.js";
+import { showError } from "./error.js";
 
 // Récupérer les données du back via l'API + générer les projets  et les catégories dans la galerie
 
@@ -9,9 +10,11 @@ export const fetchWorks = async () => {
     return await response.json();
   } catch (error) {
     console.log(
-      "Une erreur est survenue dans le processus de récupération des données des works"
+      "Une erreur est survenue dans le processus de récupération des données des projets"
     );
-    alert("Un problème de serveur est survenu");
+    const message =
+      "Un problème est survenu dans le processus de récupération des données des projets";
+    showError(message);
   }
 };
 
@@ -47,9 +50,11 @@ const fetchCategories = async () => {
     return await response.json();
   } catch (error) {
     console.log(
-      "Une erreur est survenue dans le processus de récupération des données des categories"
+      "Une erreur est survenue dans le processus de récupération des données des catégories"
     );
-    alert("Un problème de serveur est survenu");
+    const message =
+      "Un problème est survenu dans le processus de récupération des données des catégories";
+    showError(message);
   }
 };
 

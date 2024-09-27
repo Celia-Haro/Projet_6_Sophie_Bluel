@@ -1,5 +1,6 @@
 import { fetchWorks } from "./script.js";
 import { generateProjects } from "./script.js";
+import { showError } from "./error.js";
 
 // Open | close | switch  modal
 const modalLayout = document.getElementById("modal");
@@ -95,6 +96,7 @@ const deleteProjects = () => {
       if (!confirmation) {
         return;
       }
+
       const projectId = e.currentTarget.id;
       const userToken = localStorage.getItem("token");
 
@@ -115,10 +117,13 @@ const deleteProjects = () => {
             generateProjects(works);
           });
         } else {
-          console.log("Erreur lors de la suppression du projet");
+          message = "Erreur lors de la suppression du projet";
+          showError(message);
         }
       } catch (error) {
-        console.error("Erreur réseau:", error);
+        const message =
+          "Nous rencontrons un problème de connexion avec la base de données";
+        showError(message);
       }
     });
   });
@@ -130,7 +135,7 @@ const deleteProjects = () => {
 
 export const generateModalCat = (categories) => {
   for (const category of categories) {
-    const selectCat = document.querySelector(".form-bloc select");
+    const selectCat = document.querySelector(".modal-form-bloc select");
     const optionCat = document.createElement("option");
     optionCat.value = category.name;
     optionCat.innerText = category.name;
@@ -160,9 +165,10 @@ pictureInput.addEventListener("change", () => {
     };
     reader.readAsDataURL(file);
   } else {
-    alert(
-      "L'image doit être au format  JPEG ou PNG et ne doit pas dépasser 4 Mo"
-    );
+    const message =
+      "L'image doit être au format  JPEG ou PNG et ne doit pas dépasser 4 Mo";
+    showError(message);
+
     pictureContainer.innerHTML = pictureContentInfo;
     pictureInput.value = "";
     return;
@@ -191,9 +197,9 @@ form.addEventListener("input", () => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (submitButton.classList.contains("unactive")) {
-    alert(
-      "Vous devez remplir tous les champs du formulaire pour pouvoir ajouter un projet"
-    );
+    const message =
+      "Vous devez remplir tous les champs du formulaire pour pouvoir ajouter un projet";
+    showError(message);
   } else {
     const userToken = localStorage.getItem("token");
 
@@ -201,7 +207,7 @@ form.addEventListener("submit", async (e) => {
     const image = pictureInput.files[0];
     const title = document.getElementById("form-title").value;
 
-    const categorySelect = document.querySelector(".form-bloc select");
+    const categorySelect = document.querySelector(".modal-form-bloc select");
     const selectedOption = categorySelect.selectedOptions[0];
     const categoryId = parseInt(selectedOption.getAttribute("id"), 10);
 
@@ -209,11 +215,6 @@ form.addEventListener("submit", async (e) => {
     formData.append("title", title);
     formData.append("category", categoryId);
 
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
-
-    console.log(userToken);
     try {
       const response = await fetch("http://localhost:5678/api/works", {
         method: "POST",
@@ -236,21 +237,27 @@ form.addEventListener("submit", async (e) => {
           clearFormFields();
           switchModal(modals[1], modals[0]);
         });
+      } else {
+        // Gestion des erreurs en fonction du statut HTTP
+        let message;
+        if (response.status === 400) {
+          message = "Une erreur s'est produite. Veuillez vérifier vos données.";
+        } else if (response.status === 401) {
+          message =
+            "Vous n'êtes pas autorisé à effectuer cette action. Votre session a expiré, veuillez vous reconnecter.";
+        } else if (response.status === 500) {
+          message =
+            "Une erreur interne du serveur s'est produite. Veuillez réessayer plus tard.";
+        } else {
+          message = "Une erreur s'est produite. Veuillez réessayer plus tard.";
+        }
+        showError(message);
       }
     } catch (error) {
-      if (error.status === 400) {
-        alert("Une erreur s'est produite. Veuillez vérifier vos données.");
-      } else if (error.status === 401) {
-        alert(
-          "Vous n'êtes pas autorisé à effectuer cette action. Votre session a expiré, veuillez vous reconnecter."
-        );
-      } else if (error.status === 500) {
-        alert(
-          "Une erreur interne du serveur s'est produite. Veuillez réessayer plus tard."
-        );
-      } else {
-        alert("Une erreur s'est produite. Veuillez réessayer plus tard.");
-      }
+      console.error("Une erreur inattendue s'est produite : ", error);
+      const message =
+        "Une erreur s'est produite lors de la connexion au serveur.";
+      showError(message);
     }
   }
 });

@@ -11,9 +11,11 @@
       rel="stylesheet"
     />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/login.css" />
-    <script src="../scripts/login.js" defer></script>
+    <link rel="stylesheet" href="../styles/error.css" />
+    <script type="module" src="../scripts/login.js"></script>
+    <script type="module" src="../scripts/error.js"></script>
   </head>
   <body>
     <header>
@@ -31,11 +33,11 @@
       <section class="login">
         <h2>Log In</h2>
         <form class="form-login">
-          <div class="form-block">
+          <div class="form-bloc">
             <label for="email">E-mail </label>
             <input type="email" name="email" id="email" />
           </div>
-          <div class="form-block">
+          <div class="form-bloc">
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" />
           </div>

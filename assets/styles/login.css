@@ -18,7 +18,7 @@
   gap: 35px;
 }
 
-.form-block,
+.form-bloc,
 .form-submit {
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@
   color: #3d3d3d;
 }
 
-.form-block input {
+.form-bloc input {
   width: 379px;
   height: 51px;
   border: none;

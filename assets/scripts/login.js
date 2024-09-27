@@ -1,9 +1,12 @@
 // Page de connexion, gestion de la connexion
 
+import { showError } from "./error.js";
+
 const form = document.querySelector(".form-login");
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
+
   const userId = {
     email: document.querySelector("#email").value,
     password: document.querySelector("#password").value,
@@ -23,10 +26,12 @@ form.addEventListener("submit", function (event) {
         localStorage.setItem("token", body.token);
         window.location.href = "../../index.html";
       } else {
-        alert("Erreur dans l’identifiant ou le mot de passe");
+        const message = "Erreur dans l’identifiant ou le mot de passe";
+        showError(message);
       }
     } catch (error) {
-      console.log("Une erreur s'est produite lors de la connexion");
+      const message = "Une erreur s'est produite lors de la connexion";
+      showError(message);
     }
   });
 });
