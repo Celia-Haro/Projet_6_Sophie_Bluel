@@ -192,7 +192,7 @@ form.addEventListener("input", () => {
   }
 });
 
-// Gestion du submit !!!
+// Gestion du submit
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -238,7 +238,6 @@ form.addEventListener("submit", async (e) => {
           switchModal(modals[1], modals[0]);
         });
       } else {
-        // Gestion des erreurs en fonction du statut HTTP
         let message;
         if (response.status === 400) {
           message = "Une erreur s'est produite. Veuillez vérifier vos données.";
