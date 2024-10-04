@@ -17,6 +17,7 @@ btnOpenModal.addEventListener("click", () => {
 btnOpenModal2.addEventListener("click", (e) => {
   e.stopPropagation();
   switchModal(modals[0], modals[1]);
+  addEventInputFile();
 });
 
 modalLayout.addEventListener("click", closeAllModals);
@@ -147,33 +148,38 @@ export const generateModalCat = (categories) => {
 // Gestion de modal2: picture-input
 
 const pictureInput = document.getElementById("picture");
-const pictureContainer = document.querySelector(".picture-input");
-const pictureContentInfo = pictureContainer.innerHTML;
+const imageInput = document.querySelector(".image-input");
+const hiddenInputContent = document.querySelector(".input-hidden-content");
 
-pictureInput.addEventListener("change", () => {
-  const file = pictureInput.files[0];
-  const maxSize = 4 * 1024 * 1024; // 4 Mo en octets
+function addEventInputFile() {
+  pictureInput.addEventListener("change", () => {
+    const file = pictureInput.files[0];
+    const maxSize = 4 * 1024 * 1024; // 4 Mo en octets
 
-  if (
-    file &&
-    (file.type === "image/jpeg" || file.type === "image/png") &&
-    file.size < maxSize
-  ) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      pictureContainer.innerHTML = `<img src=" ${e.target.result}" alt ="${e.target.name}" ></img>`;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    const message =
-      "L'image doit être au format  JPEG ou PNG et ne doit pas dépasser 4 Mo";
-    showError(message);
+    if (
+      file &&
+      (file.type === "image/jpeg" || file.type === "image/png") &&
+      file.size < maxSize
+    ) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        imageInput.src = e.target.result;
+        imageInput.alt = file.name;
 
-    pictureContainer.innerHTML = pictureContentInfo;
-    pictureInput.value = "";
-    return;
-  }
-});
+        imageInput.style.display = "block";
+        hiddenInputContent.style.display = "none";
+      };
+      reader.readAsDataURL(file);
+    } else {
+      const message =
+        "L'image doit être au format  JPEG ou PNG et ne doit pas dépasser 4 Mo";
+      showError(message);
+      pictureInput.style.display = "block";
+      pictureInput.value = "";
+      return;
+    }
+  });
+}
 
 // Gestion modal2: Vérification des champs du formulaire, activation de submit
 
@@ -226,8 +232,10 @@ form.addEventListener("submit", async (e) => {
 
       if (response.ok) {
         function clearFormFields() {
-          pictureContainer.innerHTML = pictureContentInfo;
           form.reset();
+          imageInput.style.display = "none";
+          hiddenInputContent.style.display = "flex";
+          pictureInput.value = "";
         }
 
         alert("Le projet a été ajouté avec succès");
@@ -235,6 +243,7 @@ form.addEventListener("submit", async (e) => {
           generateModalGallery(works);
           generateProjects(works);
           clearFormFields();
+          addEventInputFile();
           switchModal(modals[1], modals[0]);
         });
       } else {
