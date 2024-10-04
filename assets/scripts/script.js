@@ -98,7 +98,7 @@ const filterWorks = (allFilters, works) => {
 
 // Gestion de la connexion et du mode édition
 
-const userConnected = localStorage.getItem("token");
+let userConnected = !!localStorage.getItem("token");
 
 const toggleLoginOut = () => {
   const log = document.getElementById("logInOut");
@@ -110,7 +110,9 @@ const toggleLoginOut = () => {
   log.addEventListener("click", () => {
     if (userConnected) {
       localStorage.removeItem("token");
-      // window.location.reload();
+      userConnected = false;
+      log.innerText = "login";
+      toggleEditionMode();
     } else {
       log.setAttribute("href", "./assets/pages/login.html");
     }
