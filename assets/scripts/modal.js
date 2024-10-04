@@ -165,7 +165,6 @@ function addEventInputFile() {
       reader.onload = (e) => {
         imageInput.src = e.target.result;
         imageInput.alt = file.name;
-
         imageInput.style.display = "block";
         hiddenInputContent.style.display = "none";
       };
