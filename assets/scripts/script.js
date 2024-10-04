@@ -110,7 +110,7 @@ const toggleLoginOut = () => {
   log.addEventListener("click", () => {
     if (userConnected) {
       localStorage.removeItem("token");
-      window.location.reload();
+      // window.location.reload();
     } else {
       log.setAttribute("href", "./assets/pages/login.html");
     }
